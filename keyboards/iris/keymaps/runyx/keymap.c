@@ -6,14 +6,12 @@ extern keymap_config_t keymap_config;
 #define _SYMB 1
 #define _GAME 2
 #define _GAMECT 3
-//#define _DESIGN 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   SYMB,
   GAME,
   GAMECT,
-//  DESIGN,
 };
 
 #define KC_ KC_TRNS
@@ -46,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     ESC , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,BSPC,
+     GESC, 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      TAB , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,BSLS,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
@@ -61,13 +59,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
   [_SYMB] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     GRV ,EXLM, AT ,HASH,DLR ,    ,                   ,AMPR,ASTR,MINS, EQL, DEL,
+      GRV,    ,    ,    ,    ,    ,                   ,    ,UNDS,MINS, EQL, DEL,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,LBRC,RBRC,    ,    ,    ,               VOLU,VOLD,    ,LBRC,RBRC,BASE,
+         ,    ,LPRN,RPRN,    ,    ,               MINS,PLUS,EQL ,LBRC,RBRC,BASE,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     RS,LCBR,RCBR,    ,    ,    ,                   ,LEFT,DOWN, UP ,RGHT,PIPE,
+         ,    ,LCBR,RCBR,    ,    ,                   ,LEFT,DOWN, UP ,RGHT,PLUS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     PSCR, LT , GT ,    ,    ,LCBR,    ,         ,RCBR,    ,VOLD,VOLU,    ,TOG2,
+      RS ,    ,LABK,RABK,    ,LCBR,    ,         ,RCBR,    ,VOLD,VOLU,    ,TOG2,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,BSPC,         DEL ,    ,RALT
   //                  `----+----+----'        `----+----+----'
@@ -77,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ESC ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,                   , P7 , P8 , P9 ,    ,    ,
+         ,    ,    ,    ,    ,    ,                   , P7 , P8 , P9 ,    ,BASE,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,                   , P4 , P5 , P6 ,PPLS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
@@ -100,22 +98,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            ,    ,    ,             ,    ,
   //                  `----+----+----'        `----+----+----'
   ),
-
-  /*
-    [_DESIGN] = LAYOUT_kc(
-    //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-       TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,MINS, EQL,BSPC,
-    //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-       LSFT, 1  , 2  , 3  , 4  , 5  ,               VOLU,VOLD, 8  ,LBRC,RBRC,BASE,
-    //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-       DEL ,    ,LEFT,RGHT, UP ,LBRC,               LEFT,DOWN, UP ,RGHT,PLUS,PIPE,
-    //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-       BL_S,    ,    ,    ,DOWN,LCBR,LPRN,     RPRN,RCBR, P1 , P2 , P3 ,MINS,    ,
-    //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                             ,    ,BSPC,         DEL ,    ,
-    //                  `----+----+----'        `----+----+----'
-    ),
-  */
 
 };
 
