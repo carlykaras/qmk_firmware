@@ -1,3 +1,4 @@
+// Runyx Keymap
 #include QMK_KEYBOARD_H
 
 extern keymap_config_t keymap_config;
@@ -14,31 +15,27 @@ enum custom_keycodes {
   GAMECT,
 };
 
+//Transparency & Shorthands
 #define KC_ KC_TRNS
 #define _______ KC_TRNS
-
-#define KC_LOWR SYMB
-#define KC_RASE SYMB
-#define KC_GCT GAMECT
-
-#define KC_LAY1 MO(_SYMB)
-#define KC_LAY2 MO(_GAME)
-#define KC_TOG2 TG(_GAME)
-#define KC_BASE TG(_QWERTY)
 #define KC_RS RESET
 
-#define KC_SWK SH_TG
+//Layer Toggles
+//MO is momentary, TO is toggle
+#define KC_SFUN MO(1)
+#define KC_GFUN MO(3)
+#define KC_TOG2 TO(2)
+#define KC_BASE TO(0)
 
-//define KC_SSB RSFT_T(KC_SPC)
+//Modifiers
 #define KC_SNT RSFT_T(KC_ENT)
 #define KC_ZALT LALT_T(KC_Z)
 
-#define KC_CTFN LT(_GAMECT, KC_TAB)
-#define KC_SYFN LT(_SYMB, KC_TAB)
+//Macros
+#define KC_LBK LGUI(LCTL(LALT(KC_DOWN)))
+#define KC_LUP LGUI(LCTL(LALT(KC_UP)))
 
-//#define KC_QU MT(MOD_RSFT, KC_TOG2)
-
-//When RGUI and RASE are swapped, RASE+any key will stick the board on SYMB
+//Issue: When RGUI and RASE are swapped, RASE+any key will stick the board on SYMB
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -50,9 +47,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      LSFT, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     LCTL,ZALT, X  , C  , V  , B  ,    ,         , N  , M  ,COMM,DOT ,SLSH,RALT,
+     LCTL,ZALT, X  , C  , V  , B  ,    ,         , N  , M  ,COMM,DOT ,SLSH,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                       LGUI,LOWR,SPC ,          SNT,RASE,RGUI
+                       LGUI,SFUN,SPC ,          SNT,SFUN,RGUI
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -61,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
       GRV,    ,    ,    ,    ,    ,                   ,    ,UNDS,MINS, EQL, DEL,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,LPRN,RPRN,    ,    ,               MINS,PLUS,EQL ,LBRC,RBRC,BASE,
+         ,LBK ,LPRN,RPRN,    ,    ,               MINS,PLUS,EQL ,LBRC,RBRC,BASE,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,LCBR,RCBR,    ,    ,                   ,LEFT,DOWN, UP ,RGHT,PLUS,
+         ,LUP ,LCBR,RCBR,    ,    ,                   ,LEFT,DOWN, UP ,RGHT,PLUS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
       RS ,    ,LABK,RABK,    ,LCBR,    ,         ,RCBR,    ,VOLD,VOLU,    ,TOG2,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
@@ -81,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,    ,         ,    , P1 , P2 , P3 ,PDOT,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
-                           , GCT ,SPC ,         SNT,P0,
+                           , GFUN,SPC ,         SNT,P0,
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -98,9 +95,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            ,    ,    ,             ,    ,
   //                  `----+----+----'        `----+----+----'
   ),
+/*
 
+Bring to Front: Control + Alt + Cmd + ↑
+Sent to Back: Control + Alt + Cmd + ↓
+
+  [_DESIGN] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+         ,    ,  V ,  O , R  , T  ,                   ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
+  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
+                           ,    ,    ,             ,    ,
+  //                  `----+----+----'        `----+----+----'
+  ),
+*/
 };
 
+//I am not swapping default layers, so this seems unnecessary?
+
+/*
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
@@ -145,3 +163,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+*/
