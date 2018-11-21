@@ -49,7 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL, or CUSTOM_MATRIX */
 #define DIODE_DIRECTION COL2ROW
 
-#define BACKLIGHT_PIN D4
+#define BACKLIGHT_PIN D6
 #define BACKLIGHT_LEVELS 3
 
 
