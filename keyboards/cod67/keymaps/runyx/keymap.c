@@ -15,6 +15,27 @@
  */
 #include QMK_KEYBOARD_H
 
+
+#define _QWERTY 0
+#define _SYMB 1
+
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE,
+  SYMB,
+};
+
+
+//Transparency & Shorthands
+#define KC_RS RESET
+
+//Layer Toggles
+//MO is momentary, TO is toggle
+#define KC_SFUN MO(1)
+#define KC_BASE TO(0)
+
+#define KC_LTOG RGB_TOG
+#define _______ KC_TRNS
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	/* Qwerty
@@ -23,20 +44,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-----------------------------------------------------------------------------------------+
  * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |    \   |
  * |-----------------------------------------------------------------------------------------+
- * | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
+ * | Fn      |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
  * |-----------------------------------------------------------------------------------------+
  * | Shift     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | RSh |  U  | FN  |
  * |-----------------------------------------------------------------------------------------+
- * | LCtl |  Gui  |  LAlt  |     Space      |      Space     | RAlt | Rctl |  L  |  D  |  R  |
+ * | LCtl |  Fn  |  LGui  |      Space      |      Space     | RAlt | Rctl |  L  |  D  |  R  |
  * `-----------------------------------------------------------------------------------------'
  */
 
-	LAYOUT(
-		KC_GESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
-		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+	//Figure out backlighting toggle
+
+		[_QWERTY] = LAYOUT_60_ansi_split_space_2ulshift(
+			KC_GESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
+			KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
+			KC_SFUN, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
+			KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RGB_MOD, KC_UP, RGB_TOG,
+			KC_LCTL, KC_SFUN, KC_LGUI, KC_SPC, KC_SPC, KC_RALT, KC_RCTL, KC_LEFT, KC_DOWN, KC_RIGHT
+		),
+
+		[_SYMB] = LAYOUT_60_ansi_split_space_2ulshift(
+			_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,
+			_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,
+			_______,_______,_______,_______,_______,_______,KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,_______,_______,_______,
+			_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,
+			RESET,_______,_______,_______,_______,_______,_______,_______,_______,_______
+		)
 
 };
 

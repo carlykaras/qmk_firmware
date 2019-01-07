@@ -1,5 +1,5 @@
 # MCU name
-#MCU = at90usb1286
+
 MCU = atmega32u4
 
 # Processor frequency.
@@ -22,6 +22,8 @@ F_CPU = 16000000
 # Target architecture (see library "Board Types" documentation).
 ARCH = AVR8
 
+# BOOTLOADER = lufa
+
 # Input clock frequency.
 #     This will define a symbol, F_USB, in all source code files equal to the
 #     input clock frequency (before any prescaling is performed) in Hz. This value may
@@ -38,7 +40,6 @@ F_USB = $(F_CPU)
 # Interrupt driven control endpoint task(+60)
 OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 
-
 # Boot Section Size in *bytes*
 #   Teensy halfKay   512
 #   Teensy++ halfKay 1024
@@ -46,7 +47,6 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 #   LUFA bootloader  4096
 #   USBaspLoader     2048
 OPT_DEFS += -DBOOTLOADER_SIZE=4096
-
 
 # Build Options
 #   change yes to no to disable
@@ -60,9 +60,10 @@ COMMAND_ENABLE = yes        # Commands for debug and configuration
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 # if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 NKRO_ENABLE = no            # USB Nkey Rollover
-BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by default
+BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on D6 by default
 MIDI_ENABLE = no            # MIDI support (+2400 to 4200, depending on config)
 UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
+RGBLIGHT_ENABLE = yes
