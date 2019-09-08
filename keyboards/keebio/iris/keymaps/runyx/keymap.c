@@ -5,13 +5,11 @@ extern keymap_config_t keymap_config;
 #define _QWERTY 0
 #define _SYMB 1
 #define _GAME 2
-#define _GAMECT 3
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   SYMB,
   GAME,
-  GAMECT,
 };
 
 //Shorthand
@@ -37,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL, KC_ZALT, KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,           KC_DEL,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     KC_LCTL, KC_ZALT, KC_X,    KC_C,    KC_V,    KC_B,    KC_BSPC,           KC_DEL,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_LGUI, KC_SFUN,   KC_SPC,                  KC_ENT,  KC_SFUN, KC_RGUI
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
